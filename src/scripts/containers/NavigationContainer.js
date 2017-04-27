@@ -119,7 +119,7 @@ class NavigationContainer extends React.Component {
                         {navDropDown}
                     </Nav>
                 </Navbar>
-                <UploadModalContainer show={this.state.showModal} onClose={() =>this.closeModal()} />                
+                <UploadModalContainer show={this.state.showModal} onClose={() =>this.closeModal()} token={this.props.token} />                
             </div>
         )
     }
