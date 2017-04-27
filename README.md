@@ -132,6 +132,6 @@ When you run `npm run build`:
 
 ## License
 
-[MIT License](https://nicksp.mit-license.org/), 2016
+[MIT License](https://opensource.org/licenses/MIT), 2017
 
-Brought to you by Nick S. Plekhanov
+Brought to you by The Feedback Network
