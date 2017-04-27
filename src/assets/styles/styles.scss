@@ -26,6 +26,8 @@ body {
     background-color: #19192d;
     background-size: cover;
     position: fixed;
+    height: 100%;
+    width: 100%;
     top: 0;
     left: 0;
     z-index: -1;
@@ -182,18 +184,28 @@ button {
 /* Navbar */
 .navbar-default {
     padding: 5px 0;
-    background-color: rgba($primary, .25);
+    background-color: rgba($primary, .3);
     border-bottom: none;
     margin-bottom: 0;
     
+    .brand-img {
+        display: inline;
+        margin-right: 10px;
+        margin-top: -7.5px;
+    }
+
     .navbar-brand {
-        color: rgba($primary, .75);
+        color: $primary;
         font-weight: 300;
         font-size: 24px;
+        font-family: 'Varela Round', 'Roboto', sans-serif;
         line-height: 35px;
+        transition: text-shadow .2s;
         &:hover,
         &:focus {
             color: $primary;
+            text-shadow: 0 0 5px rgba($primary, 1);
+            transition: text-shadow .2s;
         }
     }
     

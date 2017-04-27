@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Navbar, Button, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import aviImage from 'images/avatar-placeholder.png';
+import logoImage from 'images/logo-tfn-primary.svg';
 import uploadImage from 'images/i-upload-24.png';
 import ProfileNavItem from '../components/ProfileNavItem'
 import LoginSignUpNavItem from '../components/LoginSignUpNavItem'
@@ -61,7 +62,9 @@ class NavigationContainer extends React.Component {
             <Navbar default collapseOnSelect staticTop>
                 <Navbar.Header>
                 <Navbar.Brand>
-                    <Link to='/'> Waveform Test UI </Link>
+                    <Link to='/'>
+                        <img src={logoImage} height="48px" alt="Logo" className="brand-img"/>The Feedback Network
+                    </Link>
                 </Navbar.Brand>
                 </Navbar.Header>
                 <Nav pullRight>
