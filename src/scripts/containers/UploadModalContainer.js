@@ -9,22 +9,30 @@ class UploadModalContainer extends React.Component {
     constructor() {
         
         super()
+
             this.state = {
                 accepted: [],
                 rejected: [],
                 uploading: false,
-                percentage: 0
+                transcoding: false,
+                percentage: 0,
             }
     }
     
     uploadProgress(e) {
-        console.log(e);
+
+        var percentCompleted = Math.round( (e.loaded * 100) / e.total );
+
+        this.setState({percentage: percentCompleted})
+
+        if(percentCompleted == 100) {
+            this.setState({transcoding: true})
+        }
     }
 
     onDrop(accepted, rejected) {
          
         this.setState({ accepted, rejected, uploading: true })
-        //console.log(config())
 
         const url = config().config.server.url;
         
@@ -37,11 +45,7 @@ class UploadModalContainer extends React.Component {
                 'Content-Type' : 'multipart/form-data',
                 'Authorization' : 'Bearer ' + this.props.token
             },
-            onUploadProgress: function(progressEvent) {
-              var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-              this.setState({percentage: percentCompleted})
-              console.log(percentCompleted)
-            }.bind(this)
+            onUploadProgress: (e) => this.uploadProgress(e)
         }
 
 
@@ -52,11 +56,21 @@ class UploadModalContainer extends React.Component {
             console.log(error)
         })
     }
+
+    reset() {
+        
+        this.setState({accepted: [],
+                rejected: [],
+                uploading: false,
+                transcoding: false,
+                percentage: 0})
+        this.props.onClose()
+    }
     
     render() {
         //console.log(this.state)
         return(
-            <Modal show={this.props.show} onHide={this.props.onClose}>
+            <Modal show={this.props.show} onHide={() => this.reset()}>
                 <Modal.Header closeButton>
                     <Modal.Title>Upload</Modal.Title>
                 </Modal.Header>
@@ -69,7 +83,11 @@ class UploadModalContainer extends React.Component {
                                 onDrop={(accepted, rejected) => this.onDrop(accepted,rejected)}
                             />
                         ) : (
-                            <CircularProgressbar percentage={this.state.percentage}/>
+                            this.state.percentage < 100 ? (
+                                <CircularProgressbar percentage={this.state.percentage}/>
+                            ) : (
+                                <div> Transcoding </div>
+                            )
                         )
                     }
                     
