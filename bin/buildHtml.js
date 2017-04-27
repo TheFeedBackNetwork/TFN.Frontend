@@ -18,11 +18,11 @@ fs.readFile('src/assets/index.html', 'utf8', (err, markup) => {
 
   $('head').append('<link rel="stylesheet" href="/css/app.css">');
 
-  fs.writeFile('../wwwroot/client/index.html', $.html(), 'utf8', (err) => {
+  fs.writeFile('build/client/index.html', $.html(), 'utf8', (err) => {
     if (err) {
       return console.error(err);
     }
   });
 
-  console.log('index.html written to ../wwwroot/build/client'.green);
+  console.log('index.html written to /build/client'.green);
 });

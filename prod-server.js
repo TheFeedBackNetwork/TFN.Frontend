@@ -17,14 +17,14 @@ app.use(function(req, res, next) {
   }
 });
 
-app.use(express.static(path.join(__dirname, '../wwwroot/client')))
+app.use(express.static(path.join(__dirname, 'build/client')))
   .get('/', function (req, res) {
     res.sendFile('index.html', {
-      root: path.join(__dirname, '../wwwroot/client/index.html')
+      root: path.join(__dirname, 'build/client/index.html')
     });
 }).get('/silent_renew.html', function(req, res) {
     res.sendFile('silent_renew.html', {
-      root: path.join(__dirname, '../wwwroot/client/silent_renew.html')
+      root: path.join(__dirname, 'build/client/silent_renew.html')
     });
 });
 

@@ -1,5 +1,5 @@
 require("babel-polyfill");
-//require('babel-register')
+require("images/favicon.ico");
 // Expose Raven
 window.Raven = require('raven-js');
 
