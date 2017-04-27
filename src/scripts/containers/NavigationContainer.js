@@ -18,6 +18,7 @@ class NavigationContainer extends React.Component {
         userManager.signoutRedirect();
     };
 
+
     getNavItem() {        
         if(this.props.meFetched)
         {
@@ -25,9 +26,7 @@ class NavigationContainer extends React.Component {
         }
         return <LoginSignUpNavItem />
     }
-    something() {
-        console.log('lol')
-    }
+
     getUploadItem() {
         if(this.props.meFetched)
         {
@@ -54,7 +53,17 @@ class NavigationContainer extends React.Component {
         
         return this.getNavItem()
     }
-
+  shouldLoadPic() {
+    if(this.props.principleType === principleTypes.STANDARD_USER && this.props.meFetched)
+    {
+      return true
+      
+    }
+    if(this.props.principleType === principleTypes.BASIC) {
+      return true;
+    }
+    return false;
+  }
     render() {
         const uploadItem = this.getUploadItem()
         const navDropDown = this.getNavDropDown()
@@ -62,6 +71,9 @@ class NavigationContainer extends React.Component {
             <Navbar default collapseOnSelect staticTop>
                 <Navbar.Header>
                 <Navbar.Brand>
+                    {/*
+                        this.shouldLoadPic()? (<div/>):(<div/>)
+                    */}
                     <Link to='/'>
                         <img src={logoImage} height="48px" alt="Logo" className="brand-img"/>The Feedback Network
                     </Link>

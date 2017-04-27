@@ -14,14 +14,6 @@ class AppLoader extends React.Component {
                 </div>
             </div>
         )
-
-        /*return (
-            <div className='app-loader'>
-                <div className='loader'>
-                    <img src={loaderImg}/>
-                </div>
-            </div>
-        )*/
     }
 }
 

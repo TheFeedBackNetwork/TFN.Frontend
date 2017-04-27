@@ -47,6 +47,7 @@ class App extends React.Component {
             <Route exact path='/:userId/:postId' component={Post} />
             <Route exact path='/' component={TFNEditor} />
             <Route exact path='/' component={WaveformContainer} />
+            <Player />
             <Route exact path='/' component={WaveformContainer} />
             
             <Switch>
@@ -56,7 +57,7 @@ class App extends React.Component {
             </Switch>
             </div>) :  <AppLoader />}
           <Route exact path='/oidc-callback' component={withRouter(Callback)} /> 
-          <Player />
+          
         </div>
     )
   }
