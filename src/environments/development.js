@@ -4,6 +4,7 @@ require("images/favicon.ico");
 // Expose Raven
 window.Raven = require('raven-js');
 require('styles/styles.scss');
+require('styles/bootstrap-slider.min.css');
 
 // JavaScript main file
 require('../scripts/containers');

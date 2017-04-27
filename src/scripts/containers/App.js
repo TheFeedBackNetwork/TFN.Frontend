@@ -14,6 +14,7 @@ import TFNEditor from '../components/TFNEditor';
 import WaveformContainer from './WaveformContainer';
 import { changeLocation } from '../actions/location'
 import NavigationContainer from './NavigationContainer'
+import Player from '../components/Player'
 import AppLoader from '../components/AppLoader';
 import { Route, withRouter, Switch } from 'react-router-dom';
 import Callback from '../components/Callback';
@@ -55,6 +56,7 @@ class App extends React.Component {
             </Switch>
             </div>) :  <AppLoader />}
           <Route exact path='/oidc-callback' component={withRouter(Callback)} /> 
+          <Player />
         </div>
     )
   }
