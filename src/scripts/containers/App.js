@@ -7,7 +7,6 @@ import UserAgentContainer from './UserAgentContainer'
 import Profile from '../components/Profile';
 import MyProfileContainer from './MyProfileContainer';
 import ProfileContainer from './ProfileContainer';
-import UploadContainer from './UploadContainer';
 import PostRoll from '../components/PostRoll';
 import Post from '../components/Post';
 import TFNEditor from '../components/TFNEditor';
@@ -52,7 +51,6 @@ class App extends React.Component {
             
             <Switch>
               <Route exact path='/profile' component={MyProfileContainer} />
-              <Route exact path='/upload' component={UploadContainer} />
               <Route exact path='/:userId' component={ProfileContainer} />
             </Switch>
             </div>) :  <AppLoader />}
