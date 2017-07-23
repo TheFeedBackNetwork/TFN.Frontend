@@ -346,10 +346,30 @@ button {
 .submission {
     padding-top: 75px;
     padding-bottom: 75px;
+
     
-    .album-cover {
+.album-cover {
         border-radius: 4px;
         box-shadow: 0 0 50px 0 rgba(black, .5);
+        margin-bottom: 10px;
+    }
+    
+    .title {
+        font-size: 16px;
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .time {
+        color: rgba(white, .5);
+        font-size: 14px;
+        display: block;
+        margin-top: -3px;
+    }
+    
+    .artist {
+        margin-top: -15px;
+        font-size: 12px;
     }
     
     img {
@@ -357,7 +377,7 @@ button {
     }
     
     .btn-comment {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
     
     /* Submission score */
@@ -409,6 +429,7 @@ button {
     
     .comment {
         margin-left: 40px;
+        border-bottom: 1px solid rgba(255,255,255,0.075);
     }
     
     .content {

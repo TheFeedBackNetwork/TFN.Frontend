@@ -1,13 +1,47 @@
 import React, { PropTypes } from 'react'
 import { Row, Grid, Col } from 'react-bootstrap'
+import albumCover from 'images/album-cover-placeholder.png'
+import avatar from 'images/avatar-placeholder.png'
+import upvote from 'images/upvote-inactive.png'
+import downvote from 'images/downvote-inactive.png'
 
-class DevZoneContainer extends React.Component {
+export default class DevZoneContainer extends React.Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='container submission'>
                 <Row>
+                    <Col sm={2}>
+                    <img src={albumCover} alt="Album Cover" className="album-cover"/>
+                    <p className="title">Say my name</p>
+                    <p className="time">(5:07)</p>
+                    <p className="artist">HaydenPa <span className="rep green">+950</span></p>
+                    </Col>
+                    <Col sm={10}>
+                        <div className="content">
+                            <div className="pull-left comment-score">
+                                <div className="vote">
+                                    <button className="btn-vote transparent"><img src={upvote} alt="Upvote *inactive"/></button>
+                                    <button className="btn-vote transparent"><img src={downvote} alt="Downvote *inactive"/></button>
+                                </div>
+                                <div className="current-score text-center">
+                                    <p>243</p>
+                                </div>
+                            </div>
 
+                            <div className="comment">
+                                <div className="profile">
+                                    <img src={avatar} className="img-circle img-profile"/>Username <span className="rep green">+950</span>
+
+                                    <div className="pull-right"><a href="#" className="btn-reply">Reply</a></div>
+                                </div>
+
+                                <div className="entered-comment">
+                                    <p>Really nice! I love the moment at <a href="#">@11:38</a>! Maybe add some more bass, and then it should be perfect IMO. Great job, looking forward to your new works!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Col>
                 </Row>
             </div>
         )

@@ -16,6 +16,7 @@ import NavigationContainer from './NavigationContainer'
 import Player from '../components/Player'
 import AppLoader from '../components/AppLoader';
 import { Route, withRouter, Switch } from 'react-router-dom';
+import DevZoneContainer from'./DevZoneContainer'
 import Callback from '../components/Callback';
 import silentrenew from '../components/silentrenew'
 import * as principleTypes from '../constants/PrincipleTypes'
@@ -51,11 +52,11 @@ class App extends React.Component {
             
             <Switch>
               <Route exact path='/profile' component={MyProfileContainer} />
+              <Route exact path='/devzone' component={DevZoneContainer} />
               <Route exact path='/:userId' component={ProfileContainer} />
             </Switch>
             </div>) :  <AppLoader />}
           <Route exact path='/oidc-callback' component={withRouter(Callback)} /> 
-          <Route exact path='devzone' component={}
         </div>
     )
   }
