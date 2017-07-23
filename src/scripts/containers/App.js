@@ -55,7 +55,7 @@ class App extends React.Component {
             </Switch>
             </div>) :  <AppLoader />}
           <Route exact path='/oidc-callback' component={withRouter(Callback)} /> 
-          
+          <Route exact path='devzone' component={}
         </div>
     )
   }

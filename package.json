@@ -21,9 +21,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/https://github.com/TheFeedBackNetwork/TheFeedbackNetworkApi.git"
+    "url": "https://github.com/https://github.com/TheFeedBackNetwork/TFN.Api.git"
   },
-  "bugs": "https://github.com/https://github.com/TheFeedBackNetwork/TheFeedbackNetworkApi/issues",
+  "bugs": "https://github.com/https://github.com/TheFeedBackNetwork/TFN.Api/issues",
   "scripts": {
     "clean:build": "rimraf build",
     "clean:packages": "rimraf node_modules",
