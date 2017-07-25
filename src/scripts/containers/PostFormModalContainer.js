@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux';
 import { Row, Grid, Col } from 'react-bootstrap'
-import TFNEditor from '../components/TFNEditor'
+import TFNModalEditor from '../components/TFNModalEditor'
 
 class PostFormModalContainer extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class PostFormModalContainer extends React.Component {
                         <input className="editor DraftEditor-root" type='text'onChange={this.props.onTrackTitleChange}/>
                     </div>
 
-                <TFNEditor
+                <TFNModalEditor
                     token={this.props.token}
                     readOnly={false}
                     onContentChanged={this.props.onPostContentChange}

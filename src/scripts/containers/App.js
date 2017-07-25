@@ -9,7 +9,7 @@ import MyProfileContainer from './MyProfileContainer';
 import ProfileContainer from './ProfileContainer';
 import PostRoll from '../components/PostRoll';
 import Post from '../components/Post';
-import TFNEditor from '../components/TFNEditor';
+import TFNPageEditor from '../components/TFNPageEditor';
 import WaveformContainer from './WaveformContainer';
 import { changeLocation } from '../actions/location'
 import NavigationContainer from './NavigationContainer'

@@ -66,7 +66,7 @@ const plugins = [
   mentionPlugin
   ];
 
-class TFNModalEditor extends React.Component {
+class TFNPageEditor extends React.Component {
     
     state = {
         editorState: EditorState.createEmpty(),
@@ -125,11 +125,11 @@ class TFNModalEditor extends React.Component {
     }
 }
 
-TFNModalEditor.PropTypes = {
+TFNPageEditor.PropTypes = {
     token: PropTypes.string.isRequired,
     input: PropTypes.string,
     readOnly: PropTypes.bool.isRequired,
     onContentChange: PropTypes.func.isRequired,
 }
 
-export default TFNModalEditor;
+export default TFNPageEditor;
