@@ -74,22 +74,19 @@ class TFNEditor extends React.Component {
     }
 
     onChange = (editorState) => {
-        //console.log(editorState.getCurrentContent().toJS())
         this.setState({
             editorState,
         });
         
        const content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
-       console.log(this.props)
        this.props.onContentChanged(content)
     };
 
     onSearchChange = ({value}) => {
-        //console.log(this.props.token)
         if(value.length > 1)
         {
             var promise = searchUser(value, this.props.token);
-            //console.log(promise);
+
                 promise.then((result) => {
                     const data = result.data.map((user) => {
                         var a = {name: user.username, 
