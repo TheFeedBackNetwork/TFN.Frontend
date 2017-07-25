@@ -45,7 +45,6 @@ class App extends React.Component {
             <Background/>
             <UserAgentContainer />           
             <Route exact path='/:userId/:postId' component={Post} />
-            <Route exact path='/' component={TFNEditor} />
             <Route exact path='/' component={WaveformContainer} />
             <Player />
             <Route exact path='/' component={WaveformContainer} />
@@ -69,7 +68,7 @@ App.propTypes = {
   fetchingToken: PropTypes.bool.isRequired,
   fetchedToken: PropTypes.bool.isRequired,
   principleType: PropTypes.string.isRequired,
-  meFetched: PropTypes.bool.isRequired
+  meFetched: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -83,7 +82,7 @@ function mapStateToProps(state) {
     principleType: principleType,
     fetchedToken: fetchedToken,
     fetchingToken: fetchingToken,
-    meFetched: meFetched
+    meFetched: meFetched,
   }
 }
 

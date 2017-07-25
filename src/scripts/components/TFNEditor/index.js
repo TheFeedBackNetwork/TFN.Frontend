@@ -112,6 +112,7 @@ class TFNEditor extends React.Component {
                     onChange={this.onChange}
                     plugins={plugins}
                     ref={(element) => { this.editor = element; }}
+                    readOnly = {this.state.readOnly}
                 />
                 <MentionSuggestions
                     onSearchChange={this.onSearchChange}
@@ -124,11 +125,10 @@ class TFNEditor extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { token } = state.token;
-    return {
-        token,
-    }
+TFNEditor.PropTypes = {
+    token: PropTypes.string.isRequired,
+    input: PropTypes.string,
+    readOnly: PropTypes.bool.isRequired
 }
 
-export default connect(mapStateToProps)(TFNEditor);
+export default TFNEditor;

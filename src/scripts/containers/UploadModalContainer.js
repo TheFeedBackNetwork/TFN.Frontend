@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
-import { Modal } from 'react-bootstrap'
+import { Modal, Grid, Row, Col } from 'react-bootstrap'
 import Dropzone from 'react-dropzone'
-import CircularProgressbar from 'react-circular-progressbar';
+import CircularProgressbar from 'react-circular-progressbar'
+import PostFormModalContainer from './PostFormModalContainer'
 import axios from 'axios'
 import config from '../config/config'
 
@@ -13,8 +14,12 @@ class UploadModalContainer extends React.Component {
             this.state = {
                 accepted: [],
                 rejected: [],
+                modalTitle: 'Upload Track',
+                trackTitle: "",
+                postContent: "",                
                 uploading: false,
                 transcoding: false,
+                makingPost:false,
                 percentage: 0,
             }
     }
@@ -26,7 +31,7 @@ class UploadModalContainer extends React.Component {
         this.setState({percentage: percentCompleted})
 
         if(percentCompleted == 100) {
-            this.setState({transcoding: true})
+            this.setState({transcoding: true, uploading: false, makingPost: false })
         }
     }
 
@@ -52,6 +57,7 @@ class UploadModalContainer extends React.Component {
         axios.post(url + '/tracks', fd, c)
         .then(response => {
             console.log(response)
+            this.setState({modalTotal: 'Make Post',transcoding: false, uploading: false, makingPost: true })
         }).catch(error => {
             console.log(error)
         })
@@ -61,36 +67,79 @@ class UploadModalContainer extends React.Component {
         
         this.setState({accepted: [],
                 rejected: [],
+                modalTitle: 'Upload Track',
+                trackTitle: "",
+                postContent: "",
                 uploading: false,
                 transcoding: false,
+                makingPost: false,
                 percentage: 0})
         this.props.onClose()
     }
+
+    setTrackTitle(input) {
+        const value = input.target.value
+        console.log(this.state.trackTitle)
+        this.setState({trackTitle: value})
+    } 
+
+    setPostContent(input) {
+        //this.setState({postContent: input})
+    }
+
+    getModalBody() {
+        const {uploading, makingPost, transcoding} = this.state
+        
+        if(!uploading && !makingPost && !transcoding) {
+            
+            return <Dropzone
+                        accept="audio/*"
+                        multiple={false}
+                        onDrop={(accepted, rejected) => this.onDrop(accepted,rejected)}
+                    />
+        }
+        else if(uploading) {
+            return <div>
+                        <Grid>
+                            <Row>
+                                Uploading...
+                            </Row>
+                        </Grid>
+                        <CircularProgressbar percentage={this.state.percentage}/>
+                    </div>
+        } else if(transcoding) {
+            return <div>
+                        <Grid>
+                            <Row>
+                                Processing...
+                            </Row>
+                        </Grid>
+                        <CircularProgressbar percentage={this.state.percentage}/>
+                    </div>
+        }
+        else if(makingPost) {
+            console.log(this.state.trackTitle)
+            return <PostFormModalContainer 
+                    token={this.props.token}
+                    onPostContentChange={(e) => this.setPostContent(e)}
+                    onTrackTitleChange={(e) => this.setTrackTitle(e)}
+                     />;
+        }
+    }
     
     render() {
-        //console.log(this.state)
+        const modalBody = this.getModalBody();
         return(
             <Modal show={this.props.show} onHide={() => this.reset()}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Upload</Modal.Title>
+                    <Modal.Title>{this.state.modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {
-                        !this.state.uploading ? (
-                            <Dropzone
-                                accept="audio/*"
-                                multiple={false}
-                                onDrop={(accepted, rejected) => this.onDrop(accepted,rejected)}
-                            />
-                        ) : (
-                            this.state.percentage < 100 ? (
-                                <CircularProgressbar percentage={this.state.percentage}/>
-                            ) : (
-                                <div> Transcoding </div>
-                            )
-                        )
-                    }
-                    
+                    <PostFormModalContainer 
+                    token={this.props.token}
+                    onPostContentChange={(e) => this.setPostContent(e)}
+                    onTrackTitleChange={(e) => this.setTrackTitle(e)}
+                     />
                 </Modal.Body>
                 <Modal.Footer>
                     By uploading you agree to our Terms
