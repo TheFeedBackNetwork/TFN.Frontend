@@ -7,7 +7,6 @@ import UserAgentContainer from './UserAgentContainer'
 import Profile from '../components/Profile';
 import MyProfileContainer from './MyProfileContainer';
 import ProfileContainer from './ProfileContainer';
-import UploadContainer from './UploadContainer';
 import PostRoll from '../components/PostRoll';
 import Post from '../components/Post';
 import TFNEditor from '../components/TFNEditor';
@@ -17,6 +16,7 @@ import NavigationContainer from './NavigationContainer'
 import Player from '../components/Player'
 import AppLoader from '../components/AppLoader';
 import { Route, withRouter, Switch } from 'react-router-dom';
+import DevZoneContainer from'./DevZoneContainer'
 import Callback from '../components/Callback';
 import silentrenew from '../components/silentrenew'
 import * as principleTypes from '../constants/PrincipleTypes'
@@ -45,19 +45,17 @@ class App extends React.Component {
             <Background/>
             <UserAgentContainer />           
             <Route exact path='/:userId/:postId' component={Post} />
-            <Route exact path='/' component={TFNEditor} />
             <Route exact path='/' component={WaveformContainer} />
             <Player />
             <Route exact path='/' component={WaveformContainer} />
             
             <Switch>
               <Route exact path='/profile' component={MyProfileContainer} />
-              <Route exact path='/upload' component={UploadContainer} />
+              <Route exact path='/devzone' component={DevZoneContainer} />
               <Route exact path='/:userId' component={ProfileContainer} />
             </Switch>
             </div>) :  <AppLoader />}
           <Route exact path='/oidc-callback' component={withRouter(Callback)} /> 
-          
         </div>
     )
   }
@@ -70,7 +68,7 @@ App.propTypes = {
   fetchingToken: PropTypes.bool.isRequired,
   fetchedToken: PropTypes.bool.isRequired,
   principleType: PropTypes.string.isRequired,
-  meFetched: PropTypes.bool.isRequired
+  meFetched: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -84,7 +82,7 @@ function mapStateToProps(state) {
     principleType: principleType,
     fetchedToken: fetchedToken,
     fetchingToken: fetchingToken,
-    meFetched: meFetched
+    meFetched: meFetched,
   }
 }
 

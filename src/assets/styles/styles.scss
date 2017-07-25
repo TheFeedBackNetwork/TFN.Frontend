@@ -346,10 +346,30 @@ button {
 .submission {
     padding-top: 75px;
     padding-bottom: 75px;
+
     
-    .album-cover {
+.album-cover {
         border-radius: 4px;
         box-shadow: 0 0 50px 0 rgba(black, .5);
+        margin-bottom: 10px;
+    }
+    
+    .title {
+        font-size: 16px;
+        color: white;
+        margin-bottom: 0;
+    }
+
+    .time {
+        color: rgba(white, .5);
+        font-size: 14px;
+        display: block;
+        margin-top: -3px;
+    }
+    
+    .artist {
+        margin-top: -15px;
+        font-size: 12px;
     }
     
     img {
@@ -357,7 +377,7 @@ button {
     }
     
     .btn-comment {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
     
     /* Submission score */
@@ -409,6 +429,7 @@ button {
     
     .comment {
         margin-left: 40px;
+        border-bottom: 1px solid rgba(255,255,255,0.075);
     }
     
     .content {
@@ -812,4 +833,58 @@ button .btn-default-o {
             padding-top: 25px;
         }
     }
+}
+
+.modal-dialog {
+    vertical-align: middle;
+    max-width: 4200px;
+    padding-top: 360px;
+}
+
+.modal-footer {
+    text-align: center;
+}
+
+.modal-body {
+    padding-left: 200px;
+}
+
+.modal-content {
+  background: #F2F3F4;
+  color: #5F6D7A;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+
+.CircularProgressbar {
+  /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   *
+   * If you're not using "display: flex", you can remove this style.
+   */
+  width: 50%;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: $primary;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #d6d6d6;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: $primary;
+  font-size: 20px;
+  dominant-baseline: middle;
+  text-anchor: middle;
 }

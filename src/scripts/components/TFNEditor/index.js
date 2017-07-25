@@ -74,11 +74,14 @@ class TFNEditor extends React.Component {
     }
 
     onChange = (editorState) => {
+        //console.log(editorState.getCurrentContent().toJS())
         this.setState({
             editorState,
         });
         
-       //console.log(convertToRaw(editorState.getCurrentContent()))
+       const content = JSON.stringify(convertToRaw(editorState.getCurrentContent()))
+       console.log(this.props)
+       this.props.onContentChanged(content)
     };
 
     onSearchChange = ({value}) => {
@@ -112,6 +115,7 @@ class TFNEditor extends React.Component {
                     onChange={this.onChange}
                     plugins={plugins}
                     ref={(element) => { this.editor = element; }}
+                    readOnly = {this.state.readOnly}
                 />
                 <MentionSuggestions
                     onSearchChange={this.onSearchChange}
@@ -124,11 +128,11 @@ class TFNEditor extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { token } = state.token;
-    return {
-        token,
-    }
+TFNEditor.PropTypes = {
+    token: PropTypes.string.isRequired,
+    input: PropTypes.string,
+    readOnly: PropTypes.bool.isRequired,
+    onContentChange: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps)(TFNEditor);
+export default TFNEditor;

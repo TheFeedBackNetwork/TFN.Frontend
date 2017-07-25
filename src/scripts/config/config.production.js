@@ -3,7 +3,7 @@ module.exports = {
         client_id: "tfn_frontend",
         redirect_uri: `${window.location.protocol}//${window.location.hostname}${window.location.port ? `:${window.location.port}` : ''}/oidc-callback`,
         response_type: "token",
-        scope: "posts.write posts.read posts.edit posts.delete tracks.read tracks.write tracks.delete users.read ip.read",
+        scope: "posts.write posts.read posts.edit posts.delete tracks.read tracks.write tracks.edit tracks.delete users.read ip.read",
         authority: "http://localhost:5000",
         silent_redirect_uri: `${window.location.protocol}//${window.location.hostname}${window.location.port ? `:${window.location.port}` : ''}/oidc-renew`,
         automaticSilentRenew: true,
