@@ -2,12 +2,11 @@
   box-sizing: border-box;
   border: 1px solid #ddd;
   cursor: text;
-  padding: 16px;
-  border-radius: 2px;
+  border-radius: 5px;
   margin-bottom: 2em;
   box-shadow: inset 0px 1px 8px -3px #ABABAB;
   background: transparent;
-  color: #FFF;
+  color: #5F6D7A;
     &:hover, &:focus {
       border-color: #f86a21
     }
@@ -19,4 +18,7 @@
 
 .editor :global(.public-DraftEditor-content) {
   min-height: 70px;
+  background-color: #FDFFFC;
+    border-radius: 5px;
+  padding: 10px;
 }

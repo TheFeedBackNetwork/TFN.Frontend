@@ -6,17 +6,18 @@ import TFNEditor from '../components/TFNEditor'
 class PostFormModalContainer extends React.Component {
     render() {
         return (
-            <Grid>
-                <Row>
-                    <input type='text'onChange={this.props.onTrackTitleChange}/>
-                </Row>
-                <Row>
-                    <TFNEditor
-                        token={this.props.token}
-                        readOnly={false}
-                    />
-                </Row>                
-            </Grid>
+            <div>
+                    <div>
+                        <input className="editor DraftEditor-root" type='text'onChange={this.props.onTrackTitleChange}/>
+                    </div>
+
+                <TFNEditor
+                    token={this.props.token}
+                    readOnly={false}
+                    onContentChanged={this.props.onPostContentChange}
+                />
+                <button className="btn btn-primary pull-right" onClick={this.props.onSubmit}>Post comment</button>
+            </div>
         )
     }
 }
@@ -25,6 +26,7 @@ PostFormModalContainer.PropTypes = {
     token: PropTypes.string.isRequired,
     onPostContentChange: PropTypes.func.isRequired,
     onTrackTitleChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }
 
 export default PostFormModalContainer;

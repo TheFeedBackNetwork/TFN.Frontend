@@ -16,7 +16,8 @@ class UploadModalContainer extends React.Component {
                 rejected: [],
                 modalTitle: 'Upload Track',
                 trackTitle: "",
-                postContent: "",                
+                postContent: "", 
+                trackData: {},               
                 uploading: false,
                 transcoding: false,
                 makingPost:false,
@@ -57,34 +58,68 @@ class UploadModalContainer extends React.Component {
         axios.post(url + '/tracks', fd, c)
         .then(response => {
             console.log(response)
-            this.setState({modalTotal: 'Make Post',transcoding: false, uploading: false, makingPost: true })
+            this.setState({modalTotal: 'Make Post',transcoding: false, uploading: false, makingPost: true, trackData: response.data })
         }).catch(error => {
             console.log(error)
         })
     }
 
-    reset() {
-        
+    clearState() {
         this.setState({accepted: [],
                 rejected: [],
                 modalTitle: 'Upload Track',
                 trackTitle: "",
                 postContent: "",
+                trackData: {},
                 uploading: false,
                 transcoding: false,
                 makingPost: false,
                 percentage: 0})
+    }
+
+    reset() {
+        this.clearState()
         this.props.onClose()
     }
 
     setTrackTitle(input) {
         const value = input.target.value
-        console.log(this.state.trackTitle)
+
         this.setState({trackTitle: value})
     } 
 
     setPostContent(input) {
-        //this.setState({postContent: input})
+        console.log(input +"!")
+        this.setState({postContent: input})
+    }
+
+    submitContent() {
+        const { postContent , trackTitle, trackData } = this.state 
+
+        console.log(postContent)
+        const url = config().config.server.url;
+
+         const c = {
+            headers: {
+                'Authorization' : 'Bearer ' + this.props.token
+            },
+         }
+
+        const body = {
+            text: postContent,
+            trackUrl: trackData.location
+        }
+
+        console.log(body)
+        axios.post(url + '/posts', body, c)
+            .then(response => {
+            console.log(response)
+            //console.log(done)
+            //this.setState({modalTotal: 'Make Post',transcoding: false, uploading: false, makingPost: true, trackData: response.data })
+        }).catch(error => {
+            console.log(error)
+
+        })
     }
 
     getModalBody() {
@@ -102,7 +137,7 @@ class UploadModalContainer extends React.Component {
             return <div>
                         <Grid>
                             <Row>
-                                Uploading...
+                                <i>Uploading...</i>
                             </Row>
                         </Grid>
                         <CircularProgressbar percentage={this.state.percentage}/>
@@ -111,19 +146,19 @@ class UploadModalContainer extends React.Component {
             return <div>
                         <Grid>
                             <Row>
-                                Processing...
+                                <i>Processing...</i>
                             </Row>
                         </Grid>
                         <CircularProgressbar percentage={this.state.percentage}/>
                     </div>
         }
         else if(makingPost) {
-            console.log(this.state.trackTitle)
             return <PostFormModalContainer 
-                    token={this.props.token}
-                    onPostContentChange={(e) => this.setPostContent(e)}
-                    onTrackTitleChange={(e) => this.setTrackTitle(e)}
-                     />;
+                        token={this.props.token}
+                        onPostContentChange={(e) => this.setPostContent(e)}
+                        onTrackTitleChange={(e) => this.setTrackTitle(e)}
+                        onSubmit={() => this.submitContent()}
+                    />;
         }
     }
     
@@ -136,10 +171,11 @@ class UploadModalContainer extends React.Component {
                 </Modal.Header>
                 <Modal.Body>
                     <PostFormModalContainer 
-                    token={this.props.token}
-                    onPostContentChange={(e) => this.setPostContent(e)}
-                    onTrackTitleChange={(e) => this.setTrackTitle(e)}
-                     />
+                        token={this.props.token}
+                        onPostContentChange={(e) => this.setPostContent(e)}
+                        onTrackTitleChange={(e) => this.setTrackTitle(e)}
+                        onSubmit={() => this.submitContent()}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     By uploading you agree to our Terms

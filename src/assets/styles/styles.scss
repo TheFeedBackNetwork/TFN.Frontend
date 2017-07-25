@@ -849,6 +849,18 @@ button .btn-default-o {
     padding-left: 200px;
 }
 
+.modal-content {
+  background: #F2F3F4;
+  color: #5F6D7A;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
 
 .CircularProgressbar {
   /*
